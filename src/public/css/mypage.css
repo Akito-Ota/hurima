@@ -1,0 +1,179 @@
+/* ページ */
+.tab-container,
+.profile-image-area {
+    max-width: 1017px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ヘッダー部分 */
+.profile-image-area {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 28px 20px 16px;
+}
+
+.profile-image {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #eee;
+    background: #f1f3f5;
+}
+
+.username {
+    font-size: 22px;
+    font-weight: 700;
+    color: #101826;
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* 右側の「プロフィールを編集」ボタン */
+.mypage-profile-link {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 36px;
+    padding: 0 16px;
+    border: 1.5px solid #ff5a5f;
+    color: #ff5a5f;
+    background: #fff;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+
+.mypage-profile-link:hover {
+    background: #ff5a5f;
+    color: #fff;
+}
+
+/* タブ */
+.tab-container {
+    margin-top: 8px;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* タブのラベル行 */
+.tab-links {
+    display: flex;
+    gap: 28px;
+    padding: 14px 0;
+}
+
+.tab-input {
+    position: absolute;
+    left: -9999px;
+}
+
+/* ラベルの文字スタイル */
+.tab-link {
+    position: relative;
+    display: inline-block;
+    padding: 8px 2px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #a3a3a3;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-content {
+    padding: 16px 0 24px;
+}
+
+/* デフォルトでタブ1を表示 */
+.tab-content:first-of-type {
+    display: block;
+}
+
+/* アクティブタブの下線を色づけしたいので、:target を使って同期 */
+:root:has(#tab1:target) .tab-links a[href="#tab1"],
+:root:not(:has(#tab2:target)) .tab-links a[href="#tab1"] {
+    color: #e11d48;
+    border-bottom-color: #e11d48;
+}
+
+:root:has(#tab2:target) .tab-links a[href="#tab2"] {
+    color: #e11d48;
+    border-bottom-color: #e11d48;
+}
+
+/* 商品カードグリッド */
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    padding-top: 12px;
+}
+
+
+.tab-panels .tab-panel {
+    display: none;
+}
+
+/* tab-sell がONのとき SELL パネルだけ表示 */
+#tab-sell:checked~.tab-panels [data-tab="sell"] {
+    display: block;
+}
+
+/* tab-buy がONのとき BUY パネルだけ表示 */
+#tab-buy:checked~.tab-panels [data-tab="buy"] {
+    display: block;
+}
+
+/* 見た目用（選択中ラベルの下線/色） */
+.tab-links label {
+    display: inline-block;
+    margin-right: 16px;
+    padding: 8px 4px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+#tab-sell:checked~.tab-links label[for="tab-sell"],
+#tab-buy:checked~.tab-links label[for="tab-buy"] {
+    color: #ff5555;
+    border-bottom-color: #ff5555;
+}
+
+
+
+/* 各カード（ */
+.card {
+    display: block;
+    text-decoration: none;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform .14s ease, box-shadow .14s ease;
+}
+/* 画像 */
+.card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background: #f2f3f5;
+}
+
+/* 商品名 */
+.card p {
+    margin: 0;
+    padding: 8px 10px 12px;
+    font-size: 12px;
+    color: #111827;
+}
+
+/* 見出し*/
+h3 {
+    margin: 4px 0 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #6b7280;
+}

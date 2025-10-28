@@ -1,0 +1,107 @@
+/* 画面全体 */
+main {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 48px 24px;
+    box-sizing: border-box;
+}
+
+/* 白いカード領域 */
+.address-wrap {
+    width: 1017px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 40px 56px;
+    box-sizing: border-box;
+}
+
+/* タイトル */
+.address-title {
+    margin: 0 0 24px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #222;
+}
+
+.form-list {
+    width: 680px;
+    margin: 24px auto 0;
+}
+
+/* フォーム全体 */
+.edit-container {
+    width: 100%;
+    max-width: 905px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* ラベル + 入力 */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 22px;
+}
+
+/* ラベル */
+.form-group label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 4px;
+    text-align: left;
+}
+
+/* 入力欄 */
+.form-group input[type="text"] {
+    width: 680px;
+    height: 45px;
+    padding: 0 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+
+/* エラーメッセージ */
+.error {
+    margin-top: 6px;
+    margin-left: calc(100px + 12px);
+    font-size: 12px;
+    color: #d33;
+}
+
+/* 送信ボタン行 */
+.update-button {
+    width: 680px;
+    margin: 24px auto 0;
+}
+
+/* ボタン自体のサイズ */
+.update-button button {
+    width: 680px;
+    height: 45px;
+    background: #ff6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color .15s ease, transform .02s ease;
+}
+
+.update-button button:hover {
+    background: #ff5a5a;
+}
+
+.update-button button:active {
+    transform: translateY(1px);
+}

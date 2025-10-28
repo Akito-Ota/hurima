@@ -1,0 +1,84 @@
+/* ラジオは非表示 */
+.tabs>input[type="radio"] {
+    position: absolute;
+    left: -9999px;
+}
+
+/* タブ見出し */
+.tab-nav {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 1rem;
+}
+
+.tab-nav label {
+    padding: .5rem 1rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+/* パネルは非表示 */
+.tab-panels .tab-panel {
+    display: none;
+}
+
+/* ★ ラジオ（id）とパネル（id）を結びつける */
+#tab-osusume:checked~.tab-nav label[for="tab-osusume"],
+#tab-mylst:checked~.tab-nav label[for="tab-mylst"] {
+    border-color: #ef4444;
+    font-weight: 600;
+}
+
+#tab-osusume:checked~.tab-panels #panel-osusume {
+    display: block;
+}
+
+#tab-mylst:checked~.tab-panels #panel-mylst {
+    display: block;
+}
+
+/* 適当にカードの並べる */
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.item-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.item-thumb img {
+    width: 80%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.item-name {
+    margin-top: .25rem;
+    font-size: .9rem;
+}
+
+.text-muted {
+    color: #6b7280;
+}
+.item-thumb {
+    position: relative;
+}
+
+.badge-sold {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 5;
+    background: #ff4757;
+    color: #fff;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 4px;
+    letter-spacing: .08em;
+    font-size: 0.9rem;
+}

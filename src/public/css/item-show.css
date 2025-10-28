@@ -1,0 +1,341 @@
+/* レイアウト*/
+.item-detail {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 60px auto;
+}
+
+/* 画像部分全体 */
+.item-detail__media {
+    flex: 0 0 500px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+    position: relative;
+    left: -240px;
+}
+
+/* 画像 */
+.item-detail__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 右：情報パネル */
+.item-detail__side {
+    flex: 0 1 420px;
+    max-width: 420px;
+}
+
+/* タイトル・ブランド・価格 */
+.item-title {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 6px 0 2px;
+}
+
+.item-brand {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.detail_price {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 8px 0 2px;
+}
+
+.detail_price .yen {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: .02em;
+}
+
+.detail_price+small {
+    color: #777;
+}
+
+/* アクション（いいね / コメント数） */
+.detail_reactions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+}
+
+/* 各アイコン */
+.detail_reactions .chip--icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 各アイコンを 縦積み */
+.detail_reactions .chip--icon>* {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ボタンのデフォルト装飾を消してアイコンだけに見せる */
+.detail_reactions button {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* アイコンのサイズ */
+.detail_reactions svg,
+.detail_reactions i {
+    width: 28px;
+    height: 28px;
+    display: block;
+}
+
+/* 件数 */
+.detail_reactions .badge {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1;
+}
+
+/* ちょっとした hover の浮き上がり効果 */
+.detail_reactions button:hover,
+.detail_reactions a:hover {
+    transform: translateY(-1px);
+}
+
+.detail_reactions .is-liked svg {
+    fill: #ff6b6b;
+    stroke: #ff6b6b;
+}
+
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #e5e5e5;
+    background: #fff;
+    cursor: pointer;
+    transition: box-shadow .15s ease, transform .02s ease;
+}
+
+.icon-count {
+    display: inline-block;
+    margin-left: 8px;
+    min-width: 1.25em;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ==== Buttons (共通・一元化) ================================== */
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 44px;
+    padding: 0 24px;
+    border: 0;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color .15s ease, transform .02s ease, box-shadow .15s ease;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, .12);
+}
+
+.btn--primary {
+    background: #ff6b6b;
+    color: #fff;
+}
+
+.btn--primary:hover {
+    background: #ff5a5a;
+}
+
+.btn--primary:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .12);
+}
+
+/* フォーカス */
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 107, 107, .25);
+}
+
+/*説明・情報*/
+.blk {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.blk__title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 10px;
+}
+
+.blk__text {
+    color: #333;
+    line-height: 1.9;
+    white-space: pre-line;
+}
+
+/* カテゴリ */
+dl.meta {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    row-gap: 12px;
+    column-gap: 8px;
+    align-items: start;
+}
+
+dl.meta dt {
+    color: #666;
+    font-size: 14px;
+    padding-top: 4px;
+}
+
+dl.meta dd {
+    margin: 0;
+}
+
+dl.meta dd .chip {
+    margin-right: 8px;
+}
+
+/* コメント */
+h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 28px 0 10px;
+}
+
+.comment-list-area {
+    display: grid;
+    row-gap: 10px;
+    margin-bottom: 10px;
+}
+
+.text-muted,
+.text--muted {
+    color: #888;
+    font-size: 14px;
+}
+
+/* コメントフォーム */
+.comment-form-area .form-group {
+    display: grid;
+    row-gap: 8px;
+}
+
+.comment-form-area textarea {
+    width: 100%;
+    min-height: 160px;
+    padding: 12px 14px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    resize: vertical;
+    font-size: 14px;
+    line-height: 1.7;
+    box-sizing: border-box;
+}
+
+.comment-form-area textarea:focus {
+    outline: none;
+    border-color: #999;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, .05);
+}
+
+.comment-form-area .btn {
+    margin-top: 12px;
+}
+
+/* =============  補助  ============= */
+small {
+    font-size: 12px;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+.comment-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.comment-user-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comment-user-name {
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.comment-text {
+    background: #f5f5f5;
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: #333;
+    font-size: 14px;
+}
+
+.item-detail__cta {
+    margin: 20px 0;
+}
+
+.btn--disabled {
+    background: #bbb;
+    color: #fff;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+    border: 0;
+}
+
+.btn--disabled:hover {
+    background: #bbb;
+}

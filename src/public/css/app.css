@@ -1,0 +1,105 @@
+/* --- 1. ヘッダー全体のスタイル --- */
+.site-header {
+    display: flex;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 20px;
+}
+
+/* --- 2. サイトロゴ --- */
+.site-logo {
+    flex-shrink: 0;
+}
+
+.site-logo img {
+    height: 30px;
+    width: auto;
+    display: block;
+}
+
+/* --- 3. 検索フォーム --- */
+.site-search {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.site-search input[type="search"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* 一応非表示にしました */
+.site-search button[type="submit"] {
+    display: none;
+}
+
+/* --- 4. 右側のリンクエリア (ゲスト/ログイン共通) --- */
+.header-right,
+/* ゲスト時 */
+.mypage {
+    /* ログイン時 */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.logout-actions {
+    flex-shrink: 0;
+}
+
+/* --- 5. リンクとボタンの共通スタイル --- */
+
+/* "マイページ" の通常のリンク */
+.site-header a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.site-header a:hover {
+    text-decoration: underline;
+}
+
+/* "出品" ボタン */
+.site-header .btn {
+    background-color: #fff;
+    color: #000;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.site-header .btn:hover {
+    background-color: #f0f0f0;
+    text-decoration: none;
+}
+
+/* ログアウトボタン  */
+.logout-actions form {
+    margin: 0;
+}
+
+.logout-actions button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+    font-family: inherit;
+}
+
+.logout-actions button:hover {
+    text-decoration: underline;
+}
