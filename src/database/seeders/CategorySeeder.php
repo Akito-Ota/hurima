@@ -32,18 +32,14 @@ class CategorySeeder extends Seeder
             'ベビー・キッズ',
         ];
         foreach ($names as $name) {
-            // 日本語から slug を生成。空になる場合がある
-            $slug = Str::slug($name, '-');   // 第3引数 'ja' を付けても空になることがあります
+            $slug = Str::slug($name, '-');
             if ($slug === '') {
-                $slug = null;                // 空文字は UNIQUE 衝突の元。NULL にする
+                $slug = null;
             }
-
-            // name をキーに Upsert（重複防止）
             Category::updateOrCreate(
-                ['name' => $name],           // 探すキー（name にユニーク制約を付けているならベスト）
+                ['name' => $name],
                 ['slug' => $slug]
             );
         }
     }
-    }
-
+}

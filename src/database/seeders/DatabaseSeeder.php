@@ -17,18 +17,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-        $user = User::firstOrCreate(
-            ['email' => 'seed@example.com'],
-            [
-                'name' => 'Seed User',
-                'password' => bcrypt('password'),
-            ]);
-
-    
-        config(['seeder_user_id' => $user->id]);
-
-        
+        $this->call(UserSeeder::class);
+        $this->call(ProfileSeeder::class);
         $this->call(ItemsTableSeeder::class);
         $this->call(CategorySeeder::class);
     }

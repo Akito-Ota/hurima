@@ -14,6 +14,9 @@ use App\Models\Profile;
 use App\Models\like;
 use App\Models\Purchase;
 use App\Models\Comment;
+use App\Models\Transaction;
+use App\Models\Message;
+use App\Models\Review;
 
 class User extends Authenticatable
 {
@@ -68,5 +71,29 @@ class User extends Authenticatable
     public function purchases()
     {
         return $this->hasMany(Purchase::class);
+    }
+
+    public function sellerTransactions()
+    {
+        return $this->hasMany(Transaction::class, 'seller_id');
+    }
+    public function buyerTransactions()
+    {
+        return $this->hasMany(Transaction::class,'buyer_id');
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    public function givenReviews()
+    {
+        return $this->hasMany(Review::class,'reviewer_id');
+    }
+
+    public function receivedReviews()
+    {
+        return $this->hasMany(Review::class, 'reviewee_id');
     }
 }

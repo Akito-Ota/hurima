@@ -8,6 +8,7 @@
     <title>@yield('title', 'hurima')</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
+    <script defer src="{{ asset('js/alpine.min.js') }}"></script>
     @stack('styles')
 </head>
 
@@ -50,7 +51,7 @@
             </div>
             @endauth
         </div>
-    </header>
+
     </header>
 
     @if (session('success'))

@@ -8,7 +8,7 @@ use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-class ProfilesController extends Controller
+class ProfilesController extends Controlle
 {
     public function create()
     {

@@ -17,7 +17,8 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        $userId = config('seeder_user_id');
+        $userAId = User::where('email', 'userA@example.com')->value('id');
+        $userBId = User::where('email', 'userB@example.com')->value('id');
         $catIds = Category::pluck('id', 'name');
         DB::table('items')->insert([
             [
@@ -28,7 +29,7 @@ class ItemsTableSeeder extends Seeder
                 'category_id' => $catIds['インテリア'] ?? null,
                 'status' => '良好',
                 'item_images' => 'items/Clock.jpg',
-                'user_id' => $userId,
+                'user_id' => $userAId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -40,7 +41,7 @@ class ItemsTableSeeder extends Seeder
                 'category_id' => $catIds['インテリア'] ?? null,
                 'status' => 'やや傷や汚れあり',
                 'item_images' => 'items/Hdd.jpg',
-                'user_id' => $userId,
+                'user_id' => $userAId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -52,7 +53,7 @@ class ItemsTableSeeder extends Seeder
                 'category_id' => $catIds['インテリア'] ?? null,
                 'status' => 'やや傷や汚れあり',
                 'item_images' => 'items/Onion.jpg',
-                'user_id' => $userId,
+                'user_id' => $userAId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -64,7 +65,7 @@ class ItemsTableSeeder extends Seeder
                 'category_id' => $catIds['インテリア'] ?? null,
                 'status' => '状態が悪い',
                 'item_images' => 'items/Shoes.jpg',
-                'user_id' => $userId,
+                'user_id' => $userAId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -76,7 +77,7 @@ class ItemsTableSeeder extends Seeder
                 'category_id' => $catIds['インテリア'] ?? null,
                 'status' => '良好',
                 'item_images' => 'items/Laptop.jpg',
-                'user_id' => $userId,
+                'user_id' => $userAId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -88,7 +89,7 @@ class ItemsTableSeeder extends Seeder
                 'category_id' => $catIds['インテリア'] ?? null,
                 'status' => '目立った傷や汚れなし',
                 'item_images' => 'items/Mic.jpg',
-                'user_id' => $userId,
+                'user_id' => $userBId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -100,7 +101,7 @@ class ItemsTableSeeder extends Seeder
                 'category_id' => $catIds['インテリア'] ?? null,
                 'status' => 'やや傷や汚れあり',
                 'item_images' => 'items/Bag.jpg',
-                'user_id' => $userId,
+                'user_id' => $userBId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -112,7 +113,7 @@ class ItemsTableSeeder extends Seeder
                 'category_id' => $catIds['インテリア'] ?? null,
                 'status' => '状態が悪い',
                 'item_images' => 'items/Tumbler.jpg',
-                'user_id' => $userId,
+                'user_id' => $userBId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -124,7 +125,7 @@ class ItemsTableSeeder extends Seeder
                 'category_id' => $catIds['インテリア'] ?? null,
                 'status' => '良好',
                 'item_images' => 'items/Coffee.jpg',
-                'user_id' => $userId,
+                'user_id' => $userBId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -136,7 +137,7 @@ class ItemsTableSeeder extends Seeder
                 'category_id' => $catIds['インテリア'] ?? null,
                 'status' => '良好',
                 'item_images' => 'items/Makeup.jpg',
-                'user_id' => $userId,
+                'user_id' => $userBId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

@@ -6,12 +6,17 @@
     padding: 0 20px;
 }
 
-/* ヘッダー部分 */
 .profile-image-area {
     display: flex;
     align-items: center;
-    gap: 24px;
-    padding: 28px 20px 16px;
+    gap: 20px;
+}
+
+/* 名前と星のグループ */
+.user-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .profile-image {
@@ -23,12 +28,9 @@
     background: #f1f3f5;
 }
 
-.username {
-    font-size: 22px;
-    font-weight: 700;
-    color: #101826;
-    line-height: 1.2;
-    margin: 0;
+.stars {
+    margin-top: 4px;
+    color: yellow;
 }
 
 /* 右側の「プロフィールを編集」ボタン */
@@ -108,9 +110,9 @@
 /* 商品カードグリッド */
 .items-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 24px;
-    padding-top: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    align-items: start;
 }
 
 
@@ -128,6 +130,10 @@
     display: block;
 }
 
+#tab-transaction:checked~.tab-panels [data-tab="transaction"] {
+    display: block;
+}
+
 /* 見た目用（選択中ラベルの下線/色） */
 .tab-links label {
     display: inline-block;
@@ -138,7 +144,9 @@
 }
 
 #tab-sell:checked~.tab-links label[for="tab-sell"],
-#tab-buy:checked~.tab-links label[for="tab-buy"] {
+#tab-buy:checked~.tab-links label[for="tab-buy"],
+#tab-transaction:checked~.tab-links label[for="tab-transaction"]
+{
     color: #ff5555;
     border-bottom-color: #ff5555;
 }
@@ -166,7 +174,7 @@
 .card p {
     margin: 0;
     padding: 8px 10px 12px;
-    font-size: 12px;
+    font-size: 20px;
     color: #111827;
 }
 
@@ -176,4 +184,22 @@ h3 {
     font-size: 14px;
     font-weight: 700;
     color: #6b7280;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    min-width: 20px;
+    height: 20px;
+    padding: 10 16px;
+    border-radius: 999px;
+    font-size: 17px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    background:red;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
 }

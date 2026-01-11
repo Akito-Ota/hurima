@@ -7,6 +7,9 @@ use App\Models\Item;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Purchase;
+use App\Models\Transaction;
+
+use function Symfony\Component\Clock\now;
 
 class PurchaseController extends Controller
 {
@@ -50,6 +53,15 @@ class PurchaseController extends Controller
             'shipping_address'  => $addr['address'],
             'shipping_building' => $addr['building'],
         ]);
+
+        Transaction::create(
+            [
+                'item_id'=>$item->id,
+                'seller_id'=>$item->user_id,
+                'buyer_id'=>auth()->id(),
+                'status'=> 0, //取引中
+                'last_message_at' => \Carbon\Carbon::now(),
+            ]);
 
         // 使い終わったら削除する
         session()->forget('checkout.address');

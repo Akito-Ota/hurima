@@ -8,10 +8,12 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Purchase;
 use App\Models\Comment;
+use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+
 class Item extends Model
 {
     use HasFactory;
@@ -55,5 +57,8 @@ class Item extends Model
     {
         return $this->hasMany(Comment::class);
     }
-
+    public function transaction()
+    {
+        return $this->hasOne(Transaction::class);
+    }
 }
