@@ -86,6 +86,10 @@ MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS="no-reply@example.com"
 MAIL_FROM_NAME="${APP_NAME}"
 ```
+## ER図及びMailtrapのスクリーンショット
+
+docs/er.pngにても表示してあります
+<img width="1123" height="1031" alt="Untitled (5)" src="https://github.com/user-attachments/assets/f85ffeb1-f240-44c6-9e6c-a8a210577fca" />
 
 ## <img width="1366" height="918" alt="スクリーンショット 2026-01-11 23 33 11" src="https://github.com/user-attachments/assets/0b8f29cf-0cfc-4fd1-9331-ad621d774b19" />
 
