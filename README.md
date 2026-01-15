@@ -12,7 +12,8 @@ Laravelを用いて認証機能、商品管理機能、購入機能を実装し�
 - 取引後のチャット機能
 - ユーザー同士の評価機能
 - メール送信機能
-# <h2> 使用技術 </h2>
+
+##  使用技術 
 - PHP 8.1.33
 - Laravel Framework 8.83.29
 - Composer 2.8.11
@@ -22,20 +23,42 @@ Laravelを用いて認証機能、商品管理機能、購入機能を実装し�
 - Docker Compose : 2.36.0
 - Mailtrap
 - window.Alpine
-# <h2> 環境構築手順 </h2>
-1.コンテナ起動（ビルド）
+
+## 開発環境構築
+
+### 1. 必要環境
+本アプリを動作させるには、以下のツールがインストールされている必要があります
+git clone https://github.com/Akito-Ota/hurima.git
+cd hurima
+
+### 2. リポジトリのクローン
+
+bash
+- git clone https://github.com/Akito-Ota/hurima.git
+- cd hurima
+
+### 3. 環境変数ファイル（.env）の作成
+.env.example をコピーして .env を作成します。
+cp .env.example .env
+その後、データベース接続情報を以下のように編集してください
+- DB_CONNECTION=mysql
+- DB_HOST=mysql
+- DB_PORT=3306
+- DB_DATABASE=laravel_db
+- DB_USERNAME=laravel_user
+- DB_PASSWORD=laravel_pass
+
+### 4.Docker コンテナの起動
+
 docker compose up -d --build
-2.依存関係インストール（PHP / Node）
-docker compose exec php composer install
-docker compose exec php php -v
-docker compose exec php npm install
-docker compose exec php npm run build 
-3..env 作成 & アプリキー発行
-cp src/.env.example src/.env
-docker compose exec php php artisan key:generate
-4.ストレージリンク & マイグレーション
-docker compose exec php php artisan storage:link
-docker compose exec php php artisan migrate
+
+### 5.Laravel の初期設定
+
+- docker compose exec php composer install
+- docker compose exec php php artisan key:generate
+- docker compose exec php php artisan migrate --seed
+- docker compose exec php chmod -R 777 storage bootstrap/cache
+
 
 ## Seeding（開発用データ）
 本アプリでは、画面動作確認を行うために
