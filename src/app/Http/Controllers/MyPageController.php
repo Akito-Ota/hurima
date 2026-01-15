@@ -41,8 +41,6 @@ class MyPageController extends Controller
             ->orderByDesc('last_message_at')
             ->get();
 
-
-
         $reviewCount = Review::where('reviewee_id', $user->id)->count();
 
         $reviewAvgRounded = null;
@@ -51,6 +49,7 @@ class MyPageController extends Controller
             $reviewAvgRounded = (int) round($avg);
         }
 
+        $unreadTotal = $transactions->sum(fn($t) => $t->unreadMessagesCount());
 
         return view('mypage.mypage', compact(
             'user',
@@ -59,7 +58,8 @@ class MyPageController extends Controller
             'purchasedItems',
             'transactions',
             'reviewCount',
-            'reviewAvgRounded'
+            'reviewAvgRounded',
+            'unreadTotal'
         ));
     }
 }

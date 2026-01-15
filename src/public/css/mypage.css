@@ -175,7 +175,8 @@
     margin: 0;
     padding: 8px 10px 12px;
     font-size: 20px;
-    color: #111827;
+    color: black
+    ;
 }
 
 /* 見出し*/
@@ -192,7 +193,6 @@ h3 {
     left: 16px;
     min-width: 20px;
     height: 20px;
-    padding: 10 16px;
     border-radius: 999px;
     font-size: 17px;
     line-height: 30px;
@@ -202,4 +202,25 @@ h3 {
     width: 30px;
     height: 30px;
     min-width: 30px;
+}
+
+.tab-label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.notification-badge-menu {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    background: red;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 12px;
+    vertical-align: middle;
+    margin-bottom: 2px;
 }

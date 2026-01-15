@@ -33,6 +33,7 @@ Route::post('/logout', [LoginController::class, 'destroy'])->name('logout'); //�
 
 //商品一覧
 Route::get('/items', [ItemsController::class, 'index'])->name('items.index'); // 一覧ページ
+Route::get('/', [ItemsController::class, 'index'])->name('items.index');
 //商品詳細
 Route::get('/items/{id}', [ItemsController::class, 'show'])->name('items.show')->whereNumber('id'); //詳細ページ
 

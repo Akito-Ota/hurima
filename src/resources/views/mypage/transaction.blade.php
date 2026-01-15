@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('logo-only-header')
+@endsection
+
 @section('title', '取引チャット')
 
 @push('styles')
@@ -11,18 +14,23 @@
 @php
 $isBuyer = ((int)$transaction->buyer_id === (int)auth()->id());
 @endphp
-<div class="app-layout">
+<div class="whole-layout">
 
     {{-- ===================== 左側：サイドバー（その他の取引） ===================== --}}
     <aside class="sidebar-container">
         <h3 class="sidebar-title">その他の取引</h3>
         <div class="sidebar-list">
             @foreach ($othertransactions as $t)
+            @if($t->item)
             <a href="{{ route('transaction.show', $t) }}" class="sidebar-item">
-
-                <div class="sidebar-item-icon"></div>
+                <div class="sidebar-item-icon">
+                    <img
+                        src="{{ $t->item->item_images ? asset('storage/' . $t->item->item_images) : asset('images/noimage.png') }}"
+                        alt="{{ $t->item->name }}">
+                </div>
                 <span class="sidebar-item-text">{{ $t->item->name }}</span>
             </a>
+            @endif
             @endforeach
         </div>
     </aside>
@@ -34,7 +42,9 @@ $isBuyer = ((int)$transaction->buyer_id === (int)auth()->id());
         <header class="chat-header">
             <div class="header-user-info">
                 {{-- ユーザーアイコン（円形） --}}
-                <div class="user-avatar-small"></div>
+                <img src="{{ optional($partner)->image_url ?? asset('images/avatar-placeholder.png') }}"
+                    alt="プロフィール画像"
+                    class="profile-image">
                 <h2>「{{ $partner->name }}」さんとの取引画面</h2>
             </div>
 
@@ -48,7 +58,7 @@ $isBuyer = ((int)$transaction->buyer_id === (int)auth()->id());
                 </form>
                 @endif
 
-                {{-- ▼▼▼ 評価モーダル (既存コード維持) ▼▼▼ --}}
+                {{-- 評価モーダル   --}}
                 <div x-show="open" x-cloak class="modal-overlay">
                     <div class="modal-container">
                         <div class="modal-header">
@@ -71,7 +81,7 @@ $isBuyer = ((int)$transaction->buyer_id === (int)auth()->id());
                         </form>
                     </div>
                 </div>
-                {{-- ▲▲▲ 評価モーダル終了 ▲▲▲ --}}
+                {{-- 評価モーダル終了  --}}
             </div>
         </header>
 
@@ -98,7 +108,7 @@ $isBuyer = ((int)$transaction->buyer_id === (int)auth()->id());
 
             <div class="message-row {{ $isMe ? 'message-right' : 'message-left' }}">
 
-                {{-- 相手の場合のみアイコンを表示 --}}
+                {{-- 相手のアイコンを表示 --}}
                 @if(!$isMe)
                 <div class="message-avatar">
                     <img src="{{ optional($message->user->profile)->image_url ?? asset('images/avatar-placeholder.png') }}" alt="">
@@ -106,10 +116,7 @@ $isBuyer = ((int)$transaction->buyer_id === (int)auth()->id());
                 @endif
 
                 <div class="message-content-group">
-                    @if(!$isMe)
                     <p class="message-user-name">{{ $message->user->name }}</p>
-                    @endif
-
                     <div class="message-bubble">
                         <p class="message-text">{!! nl2br(e($message->comment)) !!}</p>
                         @if (!empty($message->message_images))
@@ -118,7 +125,6 @@ $isBuyer = ((int)$transaction->buyer_id === (int)auth()->id());
                         </div>
                         @endif
                     </div>
-
                     {{-- 編集・削除ボタン（自分のみ） --}}
                     @if($isMe)
                     <div class="message-meta-actions">
@@ -129,7 +135,6 @@ $isBuyer = ((int)$transaction->buyer_id === (int)auth()->id());
                         </form>
                         <button type="button" class="btn-text-edit" onclick="toggleEdit({{ $message->id }})">編集</button>
                     </div>
-
                     {{-- 編集フォーム --}}
                     <div id="edit-form-{{ $message->id }}" class="edit-form-container" style="display:none;">
                         <form action="{{ route('message.update', [$transaction, $message]) }}" method="POST">
@@ -154,8 +159,6 @@ $isBuyer = ((int)$transaction->buyer_id === (int)auth()->id());
             </div>
             @empty
             @endforelse
-            {{-- スクロール調整用の余白 --}}
-            <div style="height: 20px;"></div>
         </section>
 
         {{-- 4. 入力フッターエリア --}}
@@ -174,7 +177,8 @@ $isBuyer = ((int)$transaction->buyer_id === (int)auth()->id());
 
                 <div class="input-row">
                     {{-- テキスト入力 --}}
-                    <input type="text" name="comment" class="chat-input-field" placeholder="取引メッセージを記入してください" value="{{ old('comment') }}" autocomplete="off">
+                    <input type="text" name="comment" class="chat-input-field" placeholder="取引メッセージを記入してください" value="{{ old('comment') }}" autocomplete="off"
+                        id="chat-comment">
 
                     {{-- 画像追加ボタン--}}
                     <label class="btn-add-image">
@@ -192,47 +196,38 @@ $isBuyer = ((int)$transaction->buyer_id === (int)auth()->id());
                 </div>
             </form>
         </footer>
-
     </main>
 </div>
 
-{{-- 簡易スクリプト --}}
+{{-- スクリプト --}}
 <script>
-    function toggleEdit(id) {
-        const el = document.getElementById('edit-form-' + id);
-        el.style.display = el.style.display === 'none' ? 'block' : 'none';
-    }
-    // ページ読み込み時に一番下へスクロール
-    window.onload = function() {
-        const target = document.getElementById('scroll-target');
-        target.scrollTop = target.scrollHeight;
-    };
-</script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const input = document.getElementById('chat-comment');
+        if (!input) return;
 
-<script>
-    const textarea = document.querySelector('textarea[name="comment"]');
-
-    if (textarea) {
         const storageKey = 'chat_draft_transaction_{{ $transaction->id }}';
 
-        window.addEventListener('load', () => {
-            const savedData = localStorage.getItem(storageKey);
-            if (savedData) {
-                textarea.value = savedData;
-            }
+        const savedData = localStorage.getItem(storageKey);
+        if (savedData) input.value = savedData;
+
+        input.addEventListener('input', () => {
+            localStorage.setItem(storageKey, input.value);
         });
 
-        textarea.addEventListener('input', () => {
-            localStorage.setItem(storageKey, textarea.value);
-        });
-
-        textarea.form.addEventListener('submit', () => {
+        input.form?.addEventListener('submit', () => {
             localStorage.removeItem(storageKey);
         });
+
+        const target = document.getElementById('scroll-target');
+        if (target) target.scrollTop = target.scrollHeight;
+    });
+
+    function toggleEdit(id) {
+        const el = document.getElementById('edit-form-' + id);
+        if (!el) return;
+        el.style.display = (el.style.display === 'none') ? 'block' : 'none';
     }
 </script>
-
-
 
 
 @endsection
